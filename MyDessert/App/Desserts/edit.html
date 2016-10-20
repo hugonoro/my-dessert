@@ -1,0 +1,56 @@
+﻿<section class="form-group">
+    <h4>New Recipe</h4>
+    <div id="alertContainer"></div>
+    <form name="newRecipe" role="form" novalidate>
+        <div class="form-group">
+            <label for="recipeName">Name</label>
+            <div ng-class="{ 'has-error' : newRecipe.recipeName.$invalid && !newRecipe.recipeName.$pristine}">
+                <input id="recipeName" name="recipeName" type="text" class="form-control" placeholder="Enter name" ng-model="vm.recipeName" required>
+                <div ng-show="newRecipe.recipeName.$error.required && !newRecipe.recipeName.$pristine" class="help-block">The recipe name is required!</div>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <label for="description">Description</label>
+            <div ng-class="{ 'has-error' : newRecipe.description.$invalid && !newRecipe.description.$pristine}">
+                <input id="description" name="description" type="text" class="form-control" placeholder="Enter description" ng-model="vm.recipeDescription" required>
+                <span ng-show="newRecipe.description.$error.required && !newRecipe.description.$pristine" class="help-block">The description is required!</span>
+            </div>
+
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="preparationTime">Preparation Time</label>
+            <div ng-class="{ 'has-error' : newRecipe.preparationTime.$invalid && !newRecipe.preparationTime.$pristine}">
+                <input id="preparationTime" name="preparationTime" type="number" class="form-control" placeholder="Enter time in minutes" ng-model="vm.preparationTime" required>
+                <span ng-show="newRecipe.preparationTime.$error.required && !newRecipe.preparationTime.$pristine" class="help-block">The preparation time is required!</span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="preparation">Preparation</label>
+            <div ng-class="{ 'has-error' : newRecipe.preparation.$invalid && !newRecipe.preparation.$pristine}">
+                <textarea id="preparation" name="preparation" class="form-control" placeholder="Enter the preparation steps" ng-model="vm.preparation" required></textarea>
+                <span ng-show="newRecipe.preparation.$error.required && !newRecipe.preparation.$pristine" class="help-block">The preparation is required!</span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="ingredients">Add Ingredient</label>
+            <div ng-class="{ 'has-error' : newRecipe.ingredients.$invalid && !newRecipe.ingredients.$pristine}">
+                <div class="input-group">
+
+                    <input id="ingredients" name="ingredients" type="text" class="form-control" placeholder="Add new ingredient" ng-model="vm.ingredient" ng-required="vm.ingredients.length == 0">
+                    <span class="input-group-btn">
+                        <button name="btnAddIngredient" class="btn btn-secondary" type="button" ng-click="vm.addIngredient(vm.ingredient)">Add</button>
+                    </span>
+                </div>
+                <span ng-show="newRecipe.ingredients.$error.required && !newRecipe.ingredients.$pristine" class="help-block">The ingredients are required!</span>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Ingredient List</label>
+            <p ng-show="vm.ingredients.length <= 0">Please add ingredients before creating the recipe!</p>
+            <ul class="list-group" ng-repeat="ingredient in vm.ingredients track by $index">
+                <li class="list-group-item">{{ingredient}}<span class="glyphicon glyphicon-trash pull-right" ng-click="vm.removeIngredient(ingredient)"></span></li>
+            </ul>
+        </fieldset>
+        <button type="submit" ng-disabled="!newRecipe.$valid || vm.ingredients.length == 0" class="btn btn-primary" ng-click="vm.addNewRecipe()">Submit</button>
+    </form>
+</section>

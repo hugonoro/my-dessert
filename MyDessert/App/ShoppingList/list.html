@@ -1,0 +1,11 @@
+﻿<section class="shopping-list">
+    <h4>My Shopping List</h4>
+    <div ng-repeat="recipe in vm.shoppingList">
+        <div ng-show="recipe.ingredients.length > 0">
+            <h2>{{::recipe.recipeName}}</h2>
+            <ul class="list-group" ng-repeat="ingredient in recipe.ingredients">
+                <li class="list-group-item">{{ingredient}}<span class="glyphicon glyphicon-trash pull-right" ng-click="vm.removeIngredient(ingredient)"></span></li>
+            </ul>
+        </div>
+    </div>
+</section>

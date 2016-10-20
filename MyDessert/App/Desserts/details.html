@@ -1,0 +1,19 @@
+﻿<section class="details">
+    <div id="alertContainer"></div>
+    <h1>{{vm.dessert.name}}<span ng-show="vm.isLoggedIn()" ng-click="vm.toggleCurrentlyBaking(vm.dessert.id)" class="pull-right" title="{{!vm.dessert.isCurrentlyBaking ? 'Start Baking!' : 'Stop Baking!'}}" ng-class="{'glyphicon glyphicon-stop' : vm.dessert.isCurrentlyBaking,'glyphicon glyphicon-play': !vm.dessert.isCurrentlyBaking}"></span></h1>
+
+    <h4>{{vm.dessert.description}}</h4>
+    <span>
+        <span>Difficulty: {{vm.dessert.difficulty}}/10</span>
+        <span class="pull-right">Duration (in minutes): {{vm.dessert.preparationTimeMinutes}}</span>
+    </span>
+    <img ng-src={{vm.dessert.image}}>
+    <time>{{vm.dessert.submissionDate | amDateFormat: 'MMMM Do YYYY'}}</time>
+
+    <h2>Ingredients</h2>
+    <ul class="list-group" ng-repeat="ingredient in vm.dessert.ingredients">
+        <li class="list-group-item">{{ingredient}}</li>
+    </ul>
+    <h2>Preparation</h2>
+    <div>{{vm.dessert.preparation}}</div>
+</section>

@@ -1,0 +1,23 @@
+﻿<section class="form-group">
+    <h4>Sign In</h4>
+    <div id="alertContainer"></div>
+    <form name="login" role="form" novalidate>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <div ng-class="{ 'has-error' : login.username.$invalid && !login.username.$pristine}">
+                <input id="username" name="username" type="text" class="form-control" placeholder="Enter username" ng-model="vm.username" required>
+                <div ng-show="login.username.$error.required && !login.username.$pristine" class="help-block">The username is required!</div>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <label for="password">Password</label>
+            <div ng-class="{ 'has-error' : login.password.$invalid && !login.password.$pristine}">
+                <input id="password" name="password" type="password" class="form-control" placeholder="Enter password" ng-model="vm.password" required>
+                <span ng-show="login.password.$error.required && !login.password.$pristine" class="help-block">The password is required!</span>
+            </div>
+
+        </fieldset>
+        
+        <button type="submit" ng-disabled="!login.$valid" class="btn btn-primary" ng-click="vm.login()">Submit</button>
+    </form>
+</section>

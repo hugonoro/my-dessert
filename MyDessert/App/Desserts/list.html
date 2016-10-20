@@ -1,0 +1,14 @@
+﻿<div ng-repeat="dessert in vm.desserts | filter:masterPage.searchQuery | orderBy: masterPage.sortBy">
+    <div class="dessert-card">
+        <a href="#/desserts/details/{{::dessert.friendlyName}}">
+            <div>{{::dessert.name}}</div>
+            <img ng-src={{::dessert.thumbnail}}>
+            <div>
+                <div>Difficulty: {{::dessert.difficulty}}/10</div>
+                <div>Duration (in minutes): {{::dessert.preparationTimeMinutes}}</div>
+            </div>
+            <time>{{::dessert.submissionDate | amDateFormat: 'MMMM Do YYYY'}}</time>
+        </a>
+    </div>
+</div>
+
